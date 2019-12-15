@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Underground : MonoBehaviour
 {
     // Start is called before the first frame update
+		private LevelManager gameLevelManager;
     void Start()
     {
         

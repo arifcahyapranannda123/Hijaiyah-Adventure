@@ -5,10 +5,11 @@ using UnityEngine;
 public class coinscript : MonoBehaviour
 {
   	public int coinValue;
+    private LevelManager gameLevelManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameLevelManager = FindObjectOfType<LevelManager> ();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class coinscript : MonoBehaviour
       	AudioSource.PlayClipAtPoint
         (this.GetComponent<AudioSource>().clip, this.transform.position);
       	Destroy(this.gameObject);
+        gameLevelManager.AddCoins(coinValue);
 	    }
   	}
 }

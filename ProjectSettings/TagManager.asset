@@ -8,6 +8,7 @@ TagManager:
   - ground
   - bawah
   - GameOver
+  - rintangan
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Button
     uniqueID: 1734949483
+    locked: 0
+  - name: Player
+    uniqueID: 1385640661
     locked: 0
