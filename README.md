@@ -1,7 +1,7 @@
 # Hijaiyah-Adventure
 Belajar mengucap hijaiyah  di imbangi dengan adventure game
 
-# Versi 0.0.1
+$ Versi 0.0.1
 - Penambahan Scene Game Over
 - Penambahan Fungsi Score
 - Penambahan Audio
