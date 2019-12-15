@@ -5,7 +5,7 @@ Belajar mengucap hijaiyah  di imbangi dengan adventure game
 - Penambahan Scene Game Over
 - Penambahan Fungsi Score
 - Penambahan Audio
-- ~~Penyempurnaan Audio
+- ~~Penyempurnaan Audio~~
 - Perubahan Controller Player (Lompat, Kanan, Kiri)
 - Perbaikan User Interface
 - Penyempurnaan Level 1
