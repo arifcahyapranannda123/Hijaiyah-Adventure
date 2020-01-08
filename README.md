@@ -9,4 +9,4 @@ Belajar mengucap hijaiyah  di imbangi dengan adventure game
 - Perubahan Controller Player (Lompat, Kanan, Kiri)
 - Perbaikan User Interface
 - Penyempurnaan Level 1
--123
+- Penambahan GDD edit 1
