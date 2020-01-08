@@ -5,13 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - alif
-
   - ground
   - bawah
   - GameOver
   - rintangan
-=======
-
   layers:
   - Default
   - TransparentFX
@@ -49,15 +46,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-
   - name: Background
     uniqueID: 344717049
     locked: 0
-  - name: Button
+  - name: Platform
     uniqueID: 1734949483
+    locked: 0
+  - name: Foreground
+    uniqueID: 1841692689
     locked: 0
   - name: Player
     uniqueID: 1385640661
     locked: 0
-=======
-
+  - name: Default
+    uniqueID: 1775055881
+    locked: 0
