@@ -27,6 +27,16 @@ public class LevelManager : MonoBehaviour
          SceneManager.LoadScene("Level1");
      }
 
+     public void level2()
+     {
+         SceneManager.LoadScene("Level2");
+     }
+
+     public void level3()
+     {
+         SceneManager.LoadScene("Level3");
+     }
+
 
     public void AddCoins(int numberOfCoins){
       coins += numberOfCoins;
