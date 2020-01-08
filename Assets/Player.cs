@@ -1,93 +1,94 @@
-
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using System.Collections;
+ 
 public class Player : MonoBehaviour
 {
-
-	public Rigidbody2D rb;
+    /*these floats are the force you use to jump, the max time you want your jump to be allowed to happen,
+     * and a counter to track how long you have been jumping*/
+    public float jumpForce;
+    public float jumpTime;
+    public float jumpTimeCounter;
+    /*this bool is to tell us whether you are on the ground or not
+     * the layermask lets you select a layer to be ground; you will need to create a layer named ground(or whatever you like) and assign your
+     * ground objects to this layer.
+     * The stoppedJumping bool lets us track when the player stops jumping.*/
+    public bool grounded;
+    public LayerMask whatIsGround;
+    public bool stoppedJumping;
+ 
+    /*the public transform is how you will detect whether we are touching the ground.
+     * Add an empty game object as a child of your player and position it at your feet, where you touch the ground.
+     * the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground*/
+ 
     public Transform groundCheck;
     public float groundCheckRadius;
-    public LayerMask whatIsGround;
-    private bool onGround;
-    public float jumpHeight = 1f; // A public float so we can change its value easily in the inspector
-    public static bool isJumping = false;
-    Vector3 jump = new Vector3(0.0f,250,0.0f);
-
-    // Use this for initialization
+    private Animator _animator;
+    //You will need a rigidbody to apply forces for jumping, in this case I am using Rigidbody 2D because we are trying to emulate Mario :)
+    public Rigidbody2D rb;
+ 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //sets the jumpCounter to whatever we set our jumptime to in the editor
+        _animator = this.GetComponent<Animator> ();
+        jumpTimeCounter = jumpTime;
     }
-
-    // Update is called once per frame
+ 
     void Update()
     {
-        
-        onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        //determines whether our bool, grounded, is true or false by seeing if our groundcheck overlaps something on the ground layer
+        grounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, whatIsGround);
+ 
+ 
+        //if we are grounded...
+        if(grounded)
+        {
+            //the jumpcounter is whatever we set jumptime to in the editor.
+            jumpTimeCounter = jumpTime;
+        }
+    }
+ 
+    void FixedUpdate()
+    {
 
-        if (Input.GetKey(KeyCode.W) && (isJumping == false))
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(jump);
+            if(grounded)
+            {
+                rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
+                stoppedJumping = true;
+                _animator.SetTrigger ("Jump");
+            }
         }
-        if (Input.GetKey(KeyCode.D) && onGround)
+ 
+        if((Input.GetMouseButton(0)) && !stoppedJumping)
         {
-            rb.velocity = new Vector2(3, rb.velocity.y);
+            if(jumpTimeCounter > 0)
+            {
+                rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
+                jumpTimeCounter -= Time.deltaTime;
+            }
         }
-        if (Input.GetKey(KeyCode.A) && onGround)
+ 
+ 
+        if(Input.GetMouseButtonUp(0))
+        {
+            jumpTimeCounter = 0;
+            stoppedJumping = true;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.velocity = new Vector2(4, rb.velocity.y);
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            _animator.SetTrigger ("Walk");
+        }
+        if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
+            _animator.SetTrigger ("Walk");
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
-    }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "ground")
-        {
-           isJumping = false;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "ground")
-        {
-            isJumping = true;
-        }
-    }
-
-}
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player : MonoBehaviour
-{
-
-	public Rigidbody2D rb;
-    public Transform groundCheck;
-    public float groundCheckRadius;
-    public LayerMask whatIsGround;
-    private bool onGround;
-
-    // Use this for initialization
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        rb.velocity = new Vector2(3, rb.velocity.y);
-        onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-
-        if (Input.GetKey(KeyCode.Space) && onGround)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 5);
-        }
+    
     }
 }
-

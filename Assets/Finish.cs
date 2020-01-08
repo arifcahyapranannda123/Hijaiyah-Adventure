@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Underground : MonoBehaviour
+public class Finish : MonoBehaviour
 {
     // Start is called before the first frame update
 		private LevelManager gameLevelManager;
@@ -20,12 +20,12 @@ public class Underground : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
 	  	if(other.tag == "Player"){
-    		GameOver();
+    		FinishScene();
     		Debug.Log("tes");
 	  	}
 	  }
 
-	  public void GameOver(){
-	  	SceneManager.LoadScene("GameOver");
+	  public void FinishScene(){
+	  	SceneManager.LoadScene("finish");
 	  }
 }

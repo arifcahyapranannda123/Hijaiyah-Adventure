@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneSwitcher : MonoBehaviour
+public class Background : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,9 +15,4 @@ public class SceneSwitcher : MonoBehaviour
     {
         
     }
-
-    public void OnMouseUp()
-     {
-         SceneManager.LoadScene("Level Manager");
-     }
 }
