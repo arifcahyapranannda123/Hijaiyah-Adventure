@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class SceneSwitcher : MonoBehaviour
@@ -16,7 +18,7 @@ public class SceneSwitcher : MonoBehaviour
         
     }
 
-    public void OnMouseUp()
+    public void LevelManager()
      {
          SceneManager.LoadScene("Level Manager");
      }
